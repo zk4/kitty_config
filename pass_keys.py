@@ -26,7 +26,7 @@ def handle_result(args, result, target_window_id, boss):
     # vim and kitty interactive move
     mods, key, is_text = ku.parse_kittens_shortcut(args[3])
     print(keys)
-    print(modes)
+    print(mods)
     print(is_text)
     if is_text:
         w.send_text(key)
