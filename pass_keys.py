@@ -18,7 +18,7 @@ def handle_result(args, result, target_window_id, boss):
     tab = boss.active_tab
     if w is None:
         return
-    if w.screen.is_main_linebuf() or (w.screen.is_using_alternate_linebuf() and not w.title.strip().startswith("nvim")):
+    if w.screen.is_main_linebuf() or (w.screen.is_using_alternate_linebuf() and not w.title.strip().startswith("nvim")) or ("localhost" in w.title.strip()):
         getattr(tab, args[1])(args[2])
         return
 
