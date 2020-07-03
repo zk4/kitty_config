@@ -18,16 +18,17 @@ def handle_result(args, result, target_window_id, boss):
     tab = boss.active_tab
     if w is None:
         return
-    if w.screen.is_main_linebuf() or (w.screen.is_using_alternate_linebuf() and not w.title.strip().startswith("nvim")) or ("localhost" in w.title.strip()):
+    title =w.title.strip()
+    if w.screen.is_main_linebuf() or (w.screen.is_using_alternate_linebuf() and (not title.startswith("nvim") and not title.startswith("vi"))) or ("localhost" in w.title.strip()):
         getattr(tab, args[1])(args[2])
         return
 
     print("2---------------------------------------------")
     # vim and kitty interactive move
     mods, key, is_text = ku.parse_kittens_shortcut(args[3])
-    print(keys)
-    print(mods)
-    print(is_text)
+    # print(keys)
+    # print(mods)
+    # print(is_text)
     if is_text:
         w.send_text(key)
         return
